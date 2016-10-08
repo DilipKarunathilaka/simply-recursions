@@ -29,13 +29,21 @@ public class PowerRecursion {
         if (power == 0)
             return 1;
 
-        if (power % 2 != 0) {   // If odd power
-            y = power(number, (power - 1) / 2);
-            return number * y * y;
-        } else {                // If even power
-            y = power(number, power / 2);
-            return y * y;
-        }
+        // Optimized
+        y = power(number, power / 2);
+        y *= y; // multiply y by itself
+        return (power % 2 == 1) ? y *= number : y;
+
+        // Version 1.0 - Incase optimized version is unclear,
+        // uncomment the code below and comment the optimized code
+        // to yield the same result;
+//        if (power % 2 != 0) {   // If odd power
+//            y = power(number, (power - 1) / 2);
+//            return number * y * y;
+//        } else {                // If even power
+//            y = power(number, power / 2);
+//            return y * y;
+//        }
 
     }
 }
